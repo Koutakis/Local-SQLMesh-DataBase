@@ -1,0 +1,49 @@
+# --- Gateway Connection ---
+gateways:
+  mssql:
+    connection:
+      # For more information on configuring the connection to your execution engine, visit:
+      # https://sqlmesh.readthedocs.io/en/stable/reference/configuration/#connection
+      # https://sqlmesh.readthedocs.io/en/stable/integrations/engines/mssql/#connection-options
+      type: mssql
+      host: localhost 
+      # concurrent_tasks: 4
+      # register_comments: True
+      # pre_ping: True
+      # pretty_sql: False
+      user: sa
+      password: Password1!
+      database: SQLMESH 
+      # timeout: 0
+      # login_timeout: 60
+      # charset: UTF-8
+      # appname: 
+      port: 31450 
+      # conn_properties: 
+      # autocommit: Falsecode
+      # tds_version: 
+      # driver: pymssql
+      # driver_name: 
+      # trust_server_certificate: 
+      # encrypt: 
+      # odbc_properties: 
+
+default_gateway: mssql
+
+# --- Model Defaults ---
+# https://sqlmesh.readthedocs.io/en/stable/reference/model_configuration/#model-defaults
+
+model_defaults:
+  dialect: tsql
+  start: 2025-06-26 # Start date for backfill history
+  cron: '@daily'    # Run models daily at 12am UTC (can override per model)
+
+# --- Linting Rules ---
+# Enforce standards for your team
+# https://sqlmesh.readthedocs.io/en/stable/guides/linter/
+
+linter:
+  enabled: true
+  rules:
+    - ambiguousorinvalidcolumn
+    - invalidselectstarexpansion
